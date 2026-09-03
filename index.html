@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Чек-лист подготовки к управленческому спринту</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 32px 16px;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      color: #222;
+    }
+
+    .checklist {
+      max-width: 720px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 28px;
+      line-height: 1.2;
+    }
+
+    .lead {
+      margin: 0 0 28px;
+      color: #5d6670;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    .progress {
+      width: 100%;
+      height: 12px;
+      margin-bottom: 28px;
+      overflow: hidden;
+      border-radius: 20px;
+      background: #e5e7eb;
+    }
+
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      background: #16835f;
+      transition: width 0.3s ease;
+    }
+
+    .item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px 0;
+      border-bottom: 1px solid #e5e7eb;
+      cursor: pointer;
+    }
+
+    .item:last-of-type {
+      border-bottom: none;
+    }
+
+    .item input {
+      width: 22px;
+      height: 22px;
+      margin-top: 2px;
+      accent-color: #16835f;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .item-title {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 17px;
+      font-weight: bold;
+      line-height: 1.35;
+    }
+
+    .item-hint {
+      display: block;
+      color: #68717c;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .result {
+      margin-top: 28px;
+      padding: 20px;
+      border-radius: 12px;
+      background: #fff4df;
+      border-left: 5px solid #e4a11b;
+    }
+
+    .result.ready {
+      background: #eaf7f1;
+      border-left-color: #16835f;
+    }
+
+    .result-title {
+      margin: 0 0 6px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .result-text {
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .reset {
+      margin-top: 20px;
+      padding: 11px 18px;
+      border: 1px solid #cbd1d8;
+      border-radius: 8px;
+      background: #fff;
+      color: #333;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .reset:hover {
+      background: #f4f6f8;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 16px 10px;
+      }
+
+      .checklist {
+        padding: 22px 18px;
+      }
+
+      h1 {
+        font-size: 23px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="checklist">
+
+  <h1>Готовы идти к CFO?</h1>
+
+  <p class="lead">
+    Проверьте материалы до начала 25-минутного управленческого спринта.
+    Если хотя бы одного пункта нет, сначала доработайте задачу.
+  </p>
+
+  <div class="progress-label">
+    <span>Готовность к спринту</span>
+    <span id="percent">0%</span>
+  </div>
+
+  <div class="progress">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <label class="item">
+    <input type="checkbox" class="check">
+    <span>
+      <span class="item-title">1. Сформулировал вопрос для CFO</span>
+      <span class="item-hint">
+        Финансовому директору должно быть понятно, какое именно решение от него требуется.
+      </span>
+    </span>
+  </label>
+
+  <label class="item">
+    <input type="checkbox" class="check">
+    <span>
+      <span class="item-title">2. Приложил расчет и расшифровку отклонений</span>
+      <span class="item-hint">
+        Не заставляйте CFO искать исходные данные во время спринта.
+      </span>
+    </span>
+  </label>
+
+  <label class="item">
+    <input type="checkbox" class="check">
+    <span>
+      <span class="item-title">3. Показал влияние вариантов на бюджет</span>
+      <span class="item-hint">
+        Покажите, как каждый вариант повлияет на прибыль, денежный поток
+        или другие значимые показатели.
+      </span>
+    </span>
+  </label>
+
+  <label class="item">
+    <input type="checkbox" class="check">
+    <span>
+      <span class="item-title">4. Предложил рекомендуемый вариант</span>
+      <span class="item-hint">
+        Не приносите руководителю только проблему. Сформулируйте предложение
+        и аргументы в его пользу.
+      </span>
+    </span>
+  </label>
+
+  <label class="item">
+    <input type="checkbox" class="check">
+    <span>
+      <span class="item-title">5. Указал крайний срок решения</span>
+      <span class="item-hint">
+        Зафиксируйте дату, после которой задержка решения начнет тормозить
+        бюджетную кампанию.
+      </span>
+    </span>
+  </label>
+
+  <div class="result" id="result" aria-live="polite">
+    <p class="result-title" id="resultTitle">К спринту пока не готовы</p>
+    <p class="result-text" id="resultText">
+      Отметьте пункты чек-листа. На встречу с CFO стоит идти, когда готовы все пять.
+    </p>
+  </div>
+
+  <button class="reset" id="resetButton" type="button">
+    Сбросить чек-лист
+  </button>
+
+</div>
+
+<script>
+  const checks = document.querySelectorAll('.check');
+  const progressBar = document.getElementById('progressBar');
+  const percent = document.getElementById('percent');
+  const result = document.getElementById('result');
+  const resultTitle = document.getElementById('resultTitle');
+  const resultText = document.getElementById('resultText');
+  const resetButton = document.getElementById('resetButton');
+
+  function updateChecklist() {
+    const total = checks.length;
+    const completed = [...checks].filter(item => item.checked).length;
+    const progress = Math.round((completed / total) * 100);
+
+    progressBar.style.width = progress + '%';
+    percent.textContent = progress + '%';
+
+    if (completed === total) {
+      result.classList.add('ready');
+      resultTitle.textContent = 'Можно запускать спринт';
+      resultText.textContent =
+        'Материалы подготовлены. У CFO есть вопрос, расчеты, варианты решения, рекомендация и срок. Теперь 25 минут можно потратить на решение, а не на поиск информации.';
+    } else {
+      result.classList.remove('ready');
+      resultTitle.textContent = 'К спринту пока не готовы';
+
+      const left = total - completed;
+
+      resultText.textContent =
+        'Осталось подготовить: ' + left +
+        '. Закройте недостающие пункты до встречи с CFO.';
+    }
+  }
+
+  checks.forEach(check => {
+    check.addEventListener('change', updateChecklist);
+  });
+
+  resetButton.addEventListener('click', () => {
+    checks.forEach(check => {
+      check.checked = false;
+    });
+
+    updateChecklist();
+  });
+
+  updateChecklist();
+</script>
+
+</body>
+</html>
