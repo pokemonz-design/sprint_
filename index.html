@@ -1,294 +1,400 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Чек-лист подготовки к управленческому спринту</title>
+<meta charset="UTF-8">
+<title>Готовы ли материалы к спринту CFO?</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    padding: 30px;
+    color: #222;
+}
 
-    body {
-      margin: 0;
-      padding: 32px 16px;
-      font-family: Arial, sans-serif;
-      background: #f4f6f8;
-      color: #222;
-    }
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
 
-    .checklist {
-      max-width: 720px;
-      margin: 0 auto;
-      background: #fff;
-      border-radius: 16px;
-      padding: 32px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-    }
+h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
 
-    h1 {
-      margin: 0 0 10px;
-      font-size: 28px;
-      line-height: 1.2;
-    }
+.subtitle {
+    color: #666;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
 
-    .lead {
-      margin: 0 0 28px;
-      color: #5d6670;
-      font-size: 16px;
-      line-height: 1.5;
-    }
+.progress-wrap {
+    margin-bottom: 25px;
+}
 
-    .progress-label {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 8px;
-      font-weight: bold;
-    }
+.progress-text {
+    display:flex;
+    justify-content:space-between;
+    font-weight:bold;
+    margin-bottom:8px;
+}
 
-    .progress {
-      width: 100%;
-      height: 12px;
-      margin-bottom: 28px;
-      overflow: hidden;
-      border-radius: 20px;
-      background: #e5e7eb;
-    }
+.progress {
+    height:12px;
+    background:#e5e7eb;
+    border-radius:10px;
+    overflow:hidden;
+}
 
-    .progress-bar {
-      width: 0;
-      height: 100%;
-      background: #16835f;
-      transition: width 0.3s ease;
-    }
+.progress-bar {
+    height:100%;
+    width:0%;
+    background:#16835f;
+    transition:.3s;
+}
 
-    .item {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      padding: 18px 0;
-      border-bottom: 1px solid #e5e7eb;
-      cursor: pointer;
-    }
+.section {
+    margin-top:25px;
+}
 
-    .item:last-of-type {
-      border-bottom: none;
-    }
+.section h2 {
+    font-size:18px;
+    margin-bottom:12px;
+    color:#1f2937;
+}
 
-    .item input {
-      width: 22px;
-      height: 22px;
-      margin-top: 2px;
-      accent-color: #16835f;
-      cursor: pointer;
-      flex-shrink: 0;
-    }
+.item {
+    display:flex;
+    gap:12px;
+    padding:14px;
+    border-bottom:1px solid #eee;
+    cursor:pointer;
+}
 
-    .item-title {
-      display: block;
-      margin-bottom: 5px;
-      font-size: 17px;
-      font-weight: bold;
-      line-height: 1.35;
-    }
+.item:hover {
+    background:#fafafa;
+}
 
-    .item-hint {
-      display: block;
-      color: #68717c;
-      font-size: 14px;
-      line-height: 1.45;
-    }
+input {
+    width:20px;
+    height:20px;
+    accent-color:#16835f;
+}
 
-    .result {
-      margin-top: 28px;
-      padding: 20px;
-      border-radius: 12px;
-      background: #fff4df;
-      border-left: 5px solid #e4a11b;
-    }
+.title {
+    font-weight:bold;
+    display:block;
+    margin-bottom:5px;
+}
 
-    .result.ready {
-      background: #eaf7f1;
-      border-left-color: #16835f;
-    }
+.comment {
+    color:#666;
+    font-size:14px;
+    line-height:1.4;
+}
 
-    .result-title {
-      margin: 0 0 6px;
-      font-size: 18px;
-      font-weight: bold;
-    }
+.result {
+    margin-top:30px;
+    padding:20px;
+    border-radius:12px;
+    background:#fff4df;
+    border-left:5px solid #e3a008;
+}
 
-    .result-text {
-      margin: 0;
-      line-height: 1.5;
-    }
+.ready {
+    background:#e8f7ef;
+    border-left-color:#16835f;
+}
 
-    .reset {
-      margin-top: 20px;
-      padding: 11px 18px;
-      border: 1px solid #cbd1d8;
-      border-radius: 8px;
-      background: #fff;
-      color: #333;
-      font-size: 14px;
-      cursor: pointer;
-    }
+.result h3 {
+    margin-top:0;
+}
 
-    .reset:hover {
-      background: #f4f6f8;
-    }
+button {
+    margin-top:20px;
+    padding:10px 18px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    background:white;
+    cursor:pointer;
+}
 
-    @media (max-width: 600px) {
-      body {
-        padding: 16px 10px;
-      }
+</style>
 
-      .checklist {
-        padding: 22px 18px;
-      }
-
-      h1 {
-        font-size: 23px;
-      }
-    }
-  </style>
 </head>
 
 <body>
 
-<div class="checklist">
+<div class="container">
 
-  <h1>Готовы идти к CFO?</h1>
+<h1>Готовы ли материалы к спринту CFO?</h1>
 
-  <p class="lead">
-    Проверьте материалы до начала 25-минутного управленческого спринта.
-    Если хотя бы одного пункта нет, сначала доработайте задачу.
-  </p>
+<p class="subtitle">
+Проверьте задачу перед встречей с финансовым директором.
+Цель спринта — принять решение за 25 минут, а не потратить время на поиск данных.
+</p>
 
-  <div class="progress-label">
-    <span>Готовность к спринту</span>
-    <span id="percent">0%</span>
-  </div>
 
-  <div class="progress">
-    <div class="progress-bar" id="progressBar"></div>
-  </div>
+<div class="progress-wrap">
 
-  <label class="item">
-    <input type="checkbox" class="check">
-    <span>
-      <span class="item-title">1. Сформулировал вопрос для CFO</span>
-      <span class="item-hint">
-        Финансовому директору должно быть понятно, какое именно решение от него требуется.
-      </span>
-    </span>
-  </label>
+<div class="progress-text">
+<span>Готовность материалов</span>
+<span id="percent">0%</span>
+</div>
 
-  <label class="item">
-    <input type="checkbox" class="check">
-    <span>
-      <span class="item-title">2. Приложил расчет и расшифровку отклонений</span>
-      <span class="item-hint">
-        Не заставляйте CFO искать исходные данные во время спринта.
-      </span>
-    </span>
-  </label>
-
-  <label class="item">
-    <input type="checkbox" class="check">
-    <span>
-      <span class="item-title">3. Показал влияние вариантов на бюджет</span>
-      <span class="item-hint">
-        Покажите, как каждый вариант повлияет на прибыль, денежный поток
-        или другие значимые показатели.
-      </span>
-    </span>
-  </label>
-
-  <label class="item">
-    <input type="checkbox" class="check">
-    <span>
-      <span class="item-title">4. Предложил рекомендуемый вариант</span>
-      <span class="item-hint">
-        Не приносите руководителю только проблему. Сформулируйте предложение
-        и аргументы в его пользу.
-      </span>
-    </span>
-  </label>
-
-  <label class="item">
-    <input type="checkbox" class="check">
-    <span>
-      <span class="item-title">5. Указал крайний срок решения</span>
-      <span class="item-hint">
-        Зафиксируйте дату, после которой задержка решения начнет тормозить
-        бюджетную кампанию.
-      </span>
-    </span>
-  </label>
-
-  <div class="result" id="result" aria-live="polite">
-    <p class="result-title" id="resultTitle">К спринту пока не готовы</p>
-    <p class="result-text" id="resultText">
-      Отметьте пункты чек-листа. На встречу с CFO стоит идти, когда готовы все пять.
-    </p>
-  </div>
-
-  <button class="reset" id="resetButton" type="button">
-    Сбросить чек-лист
-  </button>
+<div class="progress">
+<div class="progress-bar" id="bar"></div>
+</div>
 
 </div>
 
+
+<div class="section">
+
+<h2>1. Решение</h2>
+
+
+<label class="item">
+<input type="checkbox">
+<div>
+<span class="title">Понятно, какое решение требуется от CFO</span>
+<span class="comment">
+Сформулирован конкретный вопрос: согласовать, выбрать, утвердить или вернуть на доработку.
+</span>
+</div>
+</label>
+
+
+<label class="item">
+<input type="checkbox">
+<div>
+<span class="title">Объяснено, почему решение нужно принять сейчас</span>
+<span class="comment">
+Указано влияние решения на сроки бюджетной кампании.
+</span>
+</div>
+</label>
+
+</div>
+
+
+
+<div class="section">
+
+<h2>2. Анализ</h2>
+
+
+<label class="item">
+<input type="checkbox">
+<div>
+<span class="title">Подготовлены расчеты и исходные данные</span>
+<span class="comment">
+CFO получает готовую аналитику, а не начинает поиск информации.
+</span>
+</div>
+</label>
+
+
+<label class="item">
+<input type="checkbox">
+<div>
+<span class="title">Расшифрованы существенные отклонения</span>
+<span class="comment">
+Понятны причины изменений относительно факта, прогноза или прошлого бюджета.
+</span>
+</div>
+</label>
+
+
+<label class="item">
+<input type="checkbox">
+<div>
+<span class="title">Показано влияние решения на бюджетные показатели</span>
+<span class="comment">
+Оценено влияние на прибыль, денежный поток, расходы или инвестиции.
+</span>
+</div>
+</label>
+
+
+</div>
+
+
+
+<div class="section">
+
+<h2>3. Варианты решения</h2>
+
+
+<label class="item">
+<input type="checkbox">
+<div>
+<span class="title">Подготовлены варианты действий</span>
+<span class="comment">
+Показано несколько возможных решений и последствия каждого.
+</span>
+</div>
+</label>
+
+
+<label class="item">
+<input type="checkbox">
+<div>
+<span class="title">Сформулирована рекомендация команды</span>
+<span class="comment">
+Есть предложение, какой вариант выбрать и почему.
+</span>
+</div>
+</label>
+
+</div>
+
+
+
+<div class="section">
+
+<h2>4. Риски</h2>
+
+
+<label class="item">
+<input type="checkbox">
+<div>
+<span class="title">Учтены ключевые риски и ограничения</span>
+<span class="comment">
+Понятно, что произойдет при изменении предпосылок или отказе от решения.
+</span>
+</div>
+</label>
+
+
+</div>
+
+
+
+<div class="section">
+
+<h2>5. Следующий шаг</h2>
+
+
+<label class="item">
+<input type="checkbox">
+<div>
+<span class="title">Определен срок принятия решения</span>
+<span class="comment">
+Указана дата, после которой задержка повлияет на бюджетный процесс.
+</span>
+</div>
+</label>
+
+
+<label class="item">
+<input type="checkbox">
+<div>
+<span class="title">Назначен владелец следующего действия</span>
+<span class="comment">
+После решения понятно, кто и что делает дальше.
+</span>
+</div>
+</label>
+
+
+</div>
+
+
+
+<div class="result" id="result">
+
+<h3 id="status">
+Материалы пока не готовы
+</h3>
+
+<p id="message">
+Закройте все пункты, чтобы запускать спринт CFO.
+</p>
+
+</div>
+
+
+<button onclick="resetChecklist()">
+Сбросить чек-лист
+</button>
+
+
+</div>
+
+
 <script>
-  const checks = document.querySelectorAll('.check');
-  const progressBar = document.getElementById('progressBar');
-  const percent = document.getElementById('percent');
-  const result = document.getElementById('result');
-  const resultTitle = document.getElementById('resultTitle');
-  const resultText = document.getElementById('resultText');
-  const resetButton = document.getElementById('resetButton');
 
-  function updateChecklist() {
-    const total = checks.length;
-    const completed = [...checks].filter(item => item.checked).length;
-    const progress = Math.round((completed / total) * 100);
+const checks = document.querySelectorAll("input[type=checkbox]");
+const bar = document.getElementById("bar");
+const percent = document.getElementById("percent");
+const result = document.getElementById("result");
+const status = document.getElementById("status");
+const message = document.getElementById("message");
 
-    progressBar.style.width = progress + '%';
-    percent.textContent = progress + '%';
 
-    if (completed === total) {
-      result.classList.add('ready');
-      resultTitle.textContent = 'Можно запускать спринт';
-      resultText.textContent =
-        'Материалы подготовлены. У CFO есть вопрос, расчеты, варианты решения, рекомендация и срок. Теперь 25 минут можно потратить на решение, а не на поиск информации.';
-    } else {
-      result.classList.remove('ready');
-      resultTitle.textContent = 'К спринту пока не готовы';
+function update(){
 
-      const left = total - completed;
+let done = 0;
 
-      resultText.textContent =
-        'Осталось подготовить: ' + left +
-        '. Закройте недостающие пункты до встречи с CFO.';
-    }
-  }
+checks.forEach(c=>{
+    if(c.checked) done++;
+});
 
-  checks.forEach(check => {
-    check.addEventListener('change', updateChecklist);
-  });
+let value = Math.round(done/checks.length*100);
 
-  resetButton.addEventListener('click', () => {
-    checks.forEach(check => {
-      check.checked = false;
-    });
+bar.style.width=value+"%";
+percent.innerHTML=value+"%";
 
-    updateChecklist();
-  });
 
-  updateChecklist();
+if(value===100){
+
+result.classList.add("ready");
+
+status.innerHTML="Можно запускать спринт CFO";
+
+message.innerHTML=
+"Материалы готовы: вопрос сформулирован, расчеты подготовлены, варианты оценены. За 25 минут можно принять решение.";
+
+}
+
+else{
+
+result.classList.remove("ready");
+
+status.innerHTML="Материалы пока не готовы";
+
+message.innerHTML=
+"Осталось закрыть "+(checks.length-done)+" пунктов.";
+
+}
+
+}
+
+
+checks.forEach(c=>{
+c.addEventListener("change",update);
+});
+
+
+function resetChecklist(){
+
+checks.forEach(c=>{
+c.checked=false;
+});
+
+update();
+
+}
+
+update();
+
 </script>
+
 
 </body>
 </html>
